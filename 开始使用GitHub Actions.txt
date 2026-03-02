@@ -1,0 +1,173 @@
+使用GitHub Actions开始打包
+=====================================
+
+【步骤1】初始化Git仓库
+=====================================
+
+在项目目录打开命令行，执行：
+
+git init
+git add .
+git commit -m "Initial commit - Text Diff Tool"
+
+【步骤2】创建GitHub仓库
+=====================================
+
+方式A：通过网页创建（推荐）
+--------------------------
+1. 访问 https://github.com/new
+2. 仓库名称：text-diff-tool（或任意名称）
+3. 设置为 Public（公开）
+4. 不要初始化README、.gitignore、license
+5. 点击 "Create repository"
+6. 复制仓库URL（例如：https://github.com/你的用户名/text-diff-tool.git）
+
+方式B：使用GitHub CLI
+--------------------------
+gh repo create text-diff-tool --public --source=. --remote=origin
+gh repo view --web
+
+【步骤3】推送代码到GitHub
+=====================================
+
+将下面的YOUR_USERNAME替换为你的GitHub用户名：
+
+git remote add origin https://github.com/YOUR_USERNAME/text-diff-tool.git
+git branch -M main
+git push -u origin main
+
+或使用SSH（如果已配置）：
+git remote add origin git@github.com:YOUR_USERNAME/text-diff-tool.git
+git branch -M main
+git push -u origin main
+
+【步骤4】等待自动构建
+=====================================
+
+1. 推送成功后，访问GitHub仓库页面
+2. 点击顶部的 "Actions" 标签
+3. 会看到 "Build Text Diff Tool" 工作流正在运行
+4. 等待3-5分钟完成
+
+【步骤5】下载构建产物
+=====================================
+
+1. 在Actions页面，点击最新的构建记录
+2. 滚动到页面底部
+3. 找到 "Artifacts" 部分
+4. 点击下载：
+   - text-diff-tool-jar（JAR文件）
+   - windows-installer（安装程序，如果可用）
+
+【步骤6】（可选）创建Release发布版本
+=====================================
+
+方式A：通过Git标签自动创建
+--------------------------
+在命令行执行：
+
+git tag v1.0.0
+git push origin v1.0.0
+
+这会自动：
+- 触发新的构建
+- 创建GitHub Release
+- 上传产物到Release
+
+方式B：手动创建Release
+--------------------------
+1. 访问仓库页面
+2. 点击 "Releases" → "Create a new release"
+3. 标签：v1.0.0
+4. 标题：Text Diff Tool v1.0.0
+5. 描述：首个正式版本
+6. 勾选 "Set as the latest release"
+7. 点击 "Publish release"
+
+【步骤7】验证下载
+=====================================
+
+1. 从Actions或Release下载JAR文件
+2. 解压到本地
+3. 测试运行：
+   java -jar text-diff-tool-1.0.0.jar --gui
+
+【触发构建的其他方式】
+=====================================
+
+方式1：推送代码
+git push origin main
+
+方式2：创建标签
+git tag v1.0.1 && git push origin v1.0.1
+
+方式3：手动触发
+1. 访问 GitHub仓库
+2. 点击 "Actions"
+3. 选择 "Build Text Diff Tool"
+4. 点击 "Run workflow"
+5. 选择分支：main
+6. 点击 "Run workflow" 按钮
+
+【查看构建日志】
+=====================================
+
+1. 访问仓库 → Actions
+2. 点击构建记录
+3. 查看详细日志：
+   - 构建步骤
+   - 错误信息
+   - 构建时间
+
+【常见问题】
+=====================================
+
+Q: Actions不自动运行？
+A: 检查：
+   1. Settings → Actions → General
+   2. 确认 "Workflow permissions" 设置为 "Read and write permissions"
+
+Q: 构建失败怎么办？
+A: 查看Actions日志，检查：
+   1. 文件路径是否正确
+   2. Java/Maven版本是否兼容
+   3. 文件是否都已提交
+
+Q: 如何修改配置？
+A: 编辑 .github/workflows/build.yml
+修改后提交会自动触发新构建
+
+Q: 产物保存多久？
+A: GitHub默认保存90天，可在Settings中配置
+
+Q: 私有仓库能用吗？
+A: 可以，但有免费额度限制
+
+【下一步】
+=====================================
+
+1. 完成上述步骤
+2. 测试下载的JAR文件
+3. 分发给用户测试
+4. 根据反馈优化
+
+【快速命令总结】
+=====================================
+
+# 初始化仓库
+git init
+git add .
+git commit -m "Initial commit"
+
+# 连接GitHub（替换YOUR_USERNAME）
+git remote add origin https://github.com/YOUR_USERNAME/text-diff-tool.git
+git branch -M main
+git push -u origin main
+
+# 创建标签并发布
+git tag v1.0.0
+git push origin v1.0.0
+
+=====================================
+
+祝你的GitHub Actions打包顺利！

@@ -1,0 +1,163 @@
+云端打包配置检查清单
+=====================================
+
+【GitHub Actions】
+=====================================
+
+已创建文件：
+✓ .github/workflows/build.yml
+
+需要配置：
+- [ ] 推送代码到GitHub
+- [ ] 确保仓库是公开的（或配置私有仓库权限）
+- [ ] 检查Actions权限是否开启
+    Settings → Actions → General → Workflow permissions
+
+触发方式：
+- 推送代码到main/master分支
+- 创建Git标签（v1.0.0, v1.0.1等）
+- 在网页手动触发
+
+产物位置：
+- Actions → 选择构建 → Artifacts
+
+【Cloud Studio】
+=====================================
+
+已创建文件：
+✓ cloud-studio-build.sh
+
+需要配置：
+- [ ] 注册Cloud Studio账号
+- [ ] 创建工作空间
+- [ ] 导入代码（Git或上传）
+
+启动方式：
+在Cloud Studio终端运行：
+chmod +x cloud-studio-build.sh
+./cloud-studio-build.sh
+
+产物位置：
+- 工作空间文件面板
+- 下载text-diff-tool-portable.tar.gz
+
+【Docker】
+=====================================
+
+已创建文件：
+✓ Dockerfile.build
+✓ docker-build.sh
+
+需要配置：
+- [ ] 安装Docker
+- [ ] 验证Docker运行正常（docker --version）
+
+启动方式：
+chmod +x docker-build.sh
+./docker-build.sh
+
+产物位置：
+- 当前目录下的text-diff-tool-portable.tar.gz
+
+【Jenkins】
+=====================================
+
+已创建文件：
+✓ Jenkinsfile
+
+需要配置：
+- [ ] 安装Jenkins
+- [ ] 配置Maven和JDK工具
+- [ ] 创建Pipeline任务
+- [ ] 关联代码仓库
+
+启动方式：
+在Jenkins触发构建
+
+产物位置：
+- Jenkins构建历史
+
+=====================================
+快速开始检查
+=====================================
+
+最快速的方式（5分钟）：
+
+方案A：GitHub Actions
+1. [ ] 创建GitHub仓库
+2. [ ] 推送代码
+3. [ ] 等待自动构建
+4. [ ] 下载产物
+
+方案B：Cloud Studio
+1. [ ] 打开Cloud Studio
+2. [ ] 创建工作空间
+3. [ ] 运行脚本
+4. [ ] 下载产物
+
+方案C：Docker
+1. [ ] 安装Docker
+2. [ ] 运行脚本
+3. [ ] 获取产物
+
+=====================================
+环境要求
+=====================================
+
+GitHub Actions:
+- GitHub账号
+- 仓库权限
+- 网络访问
+
+Cloud Studio:
+- 腾讯云账号
+- 工作空间额度
+- 网络访问
+
+Docker:
+- Docker已安装
+- 足够的磁盘空间
+- 网络访问（首次）
+
+=====================================
+时间估算
+=====================================
+
+GitHub Actions:
+- 首次设置: 5分钟
+- 每次构建: 3-5分钟
+
+Cloud Studio:
+- 首次设置: 5分钟
+- 每次构建: 5-10分钟
+
+Docker:
+- 首次设置: 10分钟（安装Docker）
+- 每次构建: 2-3分钟
+
+本地Inno Setup:
+- 首次设置: 5分钟
+- 每次构建: 1分钟
+
+=====================================
+故障排查
+=====================================
+
+GitHub Actions失败:
+- 检查仓库设置
+- 查看Actions日志
+- 确认文件路径正确
+
+Cloud Studio失败:
+- 检查工作空间配置
+- 查看终端输出
+- 确认Java和Maven已安装
+
+Docker失败:
+- 检查Docker是否运行
+- 查看Docker日志
+- 确认网络连接
+
+=====================================
+
+选择方案并按清单检查配置！

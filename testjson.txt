@@ -1,0 +1,19 @@
+[
+	{
+		"srchid": 484652983083141122,
+		"syscode": "PKUPH_HIS",
+		"orgcode": "1001",
+		"transtype": "WZFP-Cxx-001",
+		"dbusdate": 1771999332000,
+		"billidx": "20260225",
+		"vsuppliercode": "105292",
+		"vsuppliername": "华润医药商业集团有限公司北京药品分公司",
+		"vmaterialclasscode": 98363,
+		"vmaterialclassname": "西药",
+		"vmaterialcode": "206299",
+		"nmny": 1.9,
+		"pkRentsettleB": 484652983083141122,
+		"standingbookkeptdate": 1771999333000,
+		"creator": "01941"
+	}
+]

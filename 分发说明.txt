@@ -1,0 +1,174 @@
+文本比对工具 - 分发说明
+=======================================
+
+当前版本: v1.0.0
+生成时间: 2026-03-02
+
+=======================================
+文件清单
+=======================================
+
+核心文件（必须）：
+  target/text-diff-tool-1.0.0.jar  - 主程序文件（约2MB）
+  TextDiffTool.bat                 - Windows快捷启动脚本
+
+配置文件（开发者用）：
+  pom.xml                          - Maven项目配置
+  launch4j-config.xml              - Launch4j配置文件
+
+辅助脚本：
+  package.bat                      - 打包脚本
+  package-portable.bat             - 创建便携版脚本
+  run-gui.bat                      - 运行GUI的脚本
+  compile-gui.bat                  - 编译并运行GUI的脚本
+
+文档：
+  README.md                        - 项目说明文档
+  使用说明-打包.txt                - 详细打包说明
+  本文件                            - 分发说明
+
+=======================================
+推荐分发方案
+=======================================
+
+方案A: JAR文件（最简单，跨平台）
+
+分发文件：
+  ✓ target/text-diff-tool-1.0.0.jar
+
+用户使用方法：
+  1. 安装Java 8或更高版本
+     下载地址: https://www.oracle.com/java/technologies/downloads/#java8
+
+  2. 运行GUI界面：
+     java -jar text-diff-tool-1.0.0.jar --gui
+
+  3. 或命令行比对文件：
+     java -jar text-diff-tool-1.0.0.jar file1.txt file2.txt
+
+优点：
+  • 文件小（约2MB）
+  • 跨平台（Windows/Linux/Mac）
+  • 更新方便
+
+缺点：
+  • 用户需要安装Java
+
+---
+
+方案B: BAT+JAR文件（Windows用户友好）
+
+分发文件：
+  ✓ text-diff-tool-1.0.0.jar
+  ✓ TextDiffTool.bat（或run-gui.bat）
+
+用户使用方法：
+  1. 安装Java 8或更高版本
+  2. 双击 TextDiffTool.bat 即可启动
+
+优点：
+  • 一键启动，无需记命令
+  • 用户友好
+
+缺点：
+  • 仅Windows可用
+  • 仍需安装Java
+
+---
+
+方案C: EXE文件（需要Launch4j）
+
+生成步骤：
+  1. 下载Launch4j: https://sourceforge.net/projects/launch4j/
+  2. 运行: package.bat
+  3. 生成: target/TextDiffTool.exe
+
+分发文件：
+  ✓ target/TextDiffTool.exe
+
+用户使用方法：
+  1. 安装Java 8或更高版本
+  2. 双击 TextDiffTool.exe
+
+优点：
+  • 更像原生应用
+  • 双击即可运行
+
+缺点：
+  • 需要Launch4j工具
+  • 仍需安装Java
+
+---
+
+方案D: 便携版（包含JRE，最方便用户）
+
+生成步骤：
+  1. 运行: package-portable.bat
+  2. 提供JRE路径（例如: C:\Program Files\Java\jre1.8.0_xxx）
+  3. 生成: dist/ 目录
+
+分发文件：
+  ✓ dist/ 整个目录（约100MB）
+
+用户使用方法：
+  1. 解压到任意目录
+  2. 双击 dist/启动文本比对工具.bat
+  3. 无需安装Java
+
+优点：
+  • 用户无需安装Java
+  • 一键启动
+
+缺点：
+  • 文件较大（约100MB）
+  • 仅Windows可用
+
+=======================================
+功能特性
+=======================================
+
+✓ 图形界面 - 直观的GUI操作
+✓ 文本比对 - 支持任意文本内容比对
+✓ JSON格式化 - 自动检测并美化JSON
+✓ 差异高亮 - 绿色显示新增，红色显示删除
+✓ 复制粘贴 - 支持选择和复制对比结果
+✓ 实时统计 - 显示相同、新增、删除的行数
+✓ 保持顺序 - JSON字段顺序保持不变
+✓ 数值保护 - 长数值不转换为科学计数法
+
+=======================================
+快速测试
+=======================================
+
+1. 启动程序：
+   双击 TextDiffTool.bat
+
+2. 粘贴测试内容到左右两个框：
+
+左侧：
+{
+  "name": "张三",
+  "age": 25,
+  "city": "上海"
+}
+
+右侧：
+{
+  "name": "张三",
+  "age": 26,
+  "city": "北京",
+  "email": "test@example.com"
+}
+
+3. 点击"开始对比"
+
+预期结果：
+  ✓ name: 相同
+  ✓ age: 显示为删除25、新增26
+  ✓ city: 显示为删除"上海"、新增"北京"
+  ✓ email: 显示为新增
+
+=======================================
+
+联系方式：
+如有问题或建议，请联系开发者。

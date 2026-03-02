@@ -1,0 +1,30 @@
+# Docker镜像 - 用于云端构建
+FROM openjdk:8-jdk-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 安装构建工具
+RUN apt-get update && \
+    apt-get install -y maven wget unzip && \
+    rm -rf /var/lib/apt/lists/*
+
+# 复制项目文件
+COPY pom.xml .
+COPY src ./src
+COPY *.bat .
+COPY *.txt .
+
+# 构建JAR
+RUN mvn clean package -DskipTests
+
+# 创建输出目录
+RUN mkdir -p dist/portable
+
+# 复制文件到输出目录
+RUN cp target/text-diff-tool-1.0.0.jar dist/portable/ && \
+    cp TextDiffTool.bat dist/portable/ && \
+    cp "给用户的说明.txt" dist/portable/说明.txt
+
+# 默认命令
+CMD ["ls", "-lh", "dist/portable/"]

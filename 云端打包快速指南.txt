@@ -1,0 +1,155 @@
+云端打包快速指南
+=====================================
+
+【最简单】GitHub Actions自动打包
+=====================================
+
+步骤1：创建GitHub仓库
+1. 在GitHub创建新仓库
+2. 推送代码：
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/your-username/text-diff-tool.git
+   git push -u origin main
+
+步骤2：配置已自动完成
+文件：.github/workflows/build.yml
+此文件已自动创建，配置了自动构建
+
+步骤3：触发构建
+方式A：推送代码
+git push origin main
+
+方式B：创建标签（发布版本）
+git tag v1.0.0
+git push origin v1.0.0
+
+方式C：手动触发
+在GitHub网页：Actions → Build Text Diff Tool → Run workflow
+
+步骤4：下载产物
+1. 访问：Actions → 构建记录
+2. 在Artifacts部分下载：
+   - text-diff-tool-jar（JAR文件）
+   - windows-installer（Windows安装程序，如果可用）
+
+步骤5：创建Release（可选）
+如果是标签触发，会自动创建Release
+包含所有构建产物
+
+完成！
+
+
+【快速】Cloud Studio打包
+=====================================
+
+步骤1：打开Cloud Studio
+https://cloud.tencent.com/
+
+步骤2：创建工作空间
+1. 选择"Java"模板
+2. 创建工作空间
+
+步骤3：导入代码
+方式A：Git克隆
+git clone https://github.com/your-repo.git
+
+方式B：上传文件
+直接拖拽文件到工作空间
+
+步骤4：运行构建脚本
+chmod +x cloud-studio-build.sh
+./cloud-studio-build.sh
+
+步骤5：下载产物
+从Cloud Studio右侧"文件"面板下载：
+- text-diff-tool-portable.tar.gz
+
+完成！
+
+
+【本地】Docker打包
+=====================================
+
+步骤1：安装Docker
+Windows: 下载Docker Desktop
+https://www.docker.com/products/docker-desktop
+
+步骤2：运行打包脚本
+chmod +x docker-build.sh
+./docker-build.sh
+
+步骤3：获取产物
+text-diff-tool-portable.tar.gz
+
+完成！
+
+
+=====================================
+方案对比
+=====================================
+
+GitHub Actions:
+✓ 免费
+✓ 完全自动化
+✓ 自动发布Release
+✓ 支持Windows和Linux
+✓ 需要GitHub账号
+✓ 配置稍复杂
+
+Cloud Studio:
+✓ 国内访问快
+✓ 中文界面
+✓ 免费额度
+✓ 实时查看构建
+✓ 需要注册
+✓ 打包速度较慢
+
+Docker:
+✓ 本地运行
+✓ 可重复构建
+✓ 隔离环境
+✓ 需要安装Docker
+✓ 需要了解Docker
+
+
+=====================================
+推荐方案
+=====================================
+
+场景1：需要自动化
+→ GitHub Actions
+
+场景2：国内用户
+→ Cloud Studio
+
+场景3：测试/开发
+→ Docker
+
+场景4：简单快速
+→ 本地Inno Setup
+
+
+=====================================
+常见问题
+=====================================
+
+Q: GitHub Actions收费吗？
+A: 公开仓库免费，私有仓库每月有免费额度
+
+Q: Cloud Studio免费吗？
+A: 有免费额度，超过后按使用量收费
+
+Q: Docker打包需要联网吗？
+A: 首次构建需要下载基础镜像
+
+Q: 能否同时生成Linux和Windows安装包？
+A: GitHub Actions可以配置多平台构建
+
+Q: 如何查看构建日志？
+A: 在各平台的构建页面查看
+
+=====================================
+
+选择最适合你的方案，开始云端打包！

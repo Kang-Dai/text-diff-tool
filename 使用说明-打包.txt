@@ -1,0 +1,105 @@
+文本比对工具 - EXE打包说明
+=======================================
+
+方法一：使用Launch4j（推荐，简单）
+
+1. 安装Launch4j
+   下载地址: https://sourceforge.net/projects/launch4j/files/launch4j-3/3.50/
+   选择 "launch4j-3.50-win32.zip" 下载并解压
+
+2. 运行打包脚本
+   直接双击运行: package.bat
+
+3. 生成的文件
+   - target\TextDiffTool.exe (可执行文件)
+
+4. 分发说明
+   将 TextDiffTool.exe 发送给用户，用户需要：
+   - 已安装Java 8或更高版本 (可从 https://www.oracle.com/java/technologies/downloads/#java8 下载)
+
+
+方法二：使用Launch4j图形界面（可视化）
+
+1. 启动Launch4j图形界面
+   运行 launch4jc.exe (或 launch4j.exe)
+
+2. 打开配置文件
+   文件 -> 打开 -> 选择项目根目录下的 launch4j-config.xml
+
+3. 点击"构建"按钮
+   左上角齿轮图标，或按 F9
+
+4. 生成的EXE文件在 target\TextDiffTool.exe
+
+
+方法三：创建便携版（包含JRE）
+
+运行: package-portable.bat
+
+此脚本会：
+1. 编译项目
+2. 创建dist目录
+3. 询问是否包含JRE
+4. 如果包含JRE，需要提供JRE路径
+5. 自动配置EXE使用内置JRE
+
+生成的dist目录可直接分发给其他用户，无需安装Java
+
+
+方法四：仅使用JAR文件（无需EXE）
+
+1. 运行 package.bat 打包JAR
+2. 分发: target\text-diff-tool-1.0.0.jar
+3. 用户运行: java -jar text-diff-tool-1.0.0.jar --gui
+
+优点: 跨平台，Windows/Linux/Mac都能用
+缺点: 用户需要安装Java
+
+
+环境要求
+========
+
+开发环境:
+- Java 8+
+- Maven 3.6+
+- Launch4j 3.50+ (可选)
+
+运行环境（用户）:
+- Windows 7/8/10/11
+- Java 8+ (如果不包含JRE)
+
+
+常见问题
+========
+
+Q: Launch4j下载后如何安装？
+A: Launch4j是绿色软件，解压即可使用，无需安装
+
+Q: 打包后的EXE文件在哪里？
+A: 在项目的 target 目录下，文件名为 TextDiffTool.exe
+
+Q: 用户没有安装Java怎么办？
+A: 使用方法三创建便携版，将JRE打包进去，或者让用户安装Java
+
+Q: EXE文件双击后闪退？
+A: 请在命令行运行查看错误信息: TextDiffTool.exe
+   可能原因: Java版本不匹配、路径包含中文等
+
+Q: 如何检查打包是否成功？
+A: 运行命令: java -jar target\text-diff-tool-1.0.0.jar --gui
+   如果能正常启动GUI，说明JAR打包成功
+
+
+快速开始
+========
+
+最简单的方式（已安装Launch4j）:
+  1. 双击运行 package.bat
+  2. 等待打包完成
+  3. 将 target\TextDiffTool.exe 发送给用户
+
+最简单的方式（未安装Launch4j）:
+  1. 双击运行 package.bat
+  2. 等待JAR打包完成
+  3. 将 target\text-diff-tool-1.0.0.jar 发送给用户
+  4. 用户运行: java -jar text-diff-tool-1.0.0.jar --gui
