@@ -1,0 +1,194 @@
+推送到GitHub - 完整步骤
+=====================================
+
+【当前状态】
+=====================================
+
+✓ Git仓库已初始化
+✓ 所有文件已添加
+✓ 第一次提交已完成
+✓ 提交包含43个文件，3759行代码
+
+【接下来要做的事】
+=====================================
+
+步骤1：创建GitHub仓库
+----------------------
+
+方式A：网页创建（推荐，30秒）
+----------------------------
+1. 访问：https://github.com/new
+2. 填写：
+   - Repository name: text-diff-tool
+   - Description: 文本比对工具 - 支持JSON格式化和差异高亮
+   - 选择：Public（公开）
+   - 不要勾选：
+     ☐ Add a README file
+     ☐ Add .gitignore
+     ☐ Choose a license
+3. 点击：Create repository
+
+方式B：使用GitHub CLI（更快）
+----------------------------
+gh repo create text-diff-tool --public --source=. --remote=origin --description="文本比对工具 - 支持JSON格式化和差异高亮"
+
+
+步骤2：连接到GitHub仓库
+----------------------
+
+重要！将下面的YOUR_USERNAME替换为你的GitHub用户名！
+
+git remote add origin https://github.com/YOUR_USERNAME/text-diff-tool.git
+
+例如，如果你的用户名是zhangsan，那么：
+git remote add origin https://github.com/zhangsan/text-diff-tool.git
+
+或者使用SSH（如果你已配置SSH密钥）：
+git remote add origin git@github.com:YOUR_USERNAME/text-diff-tool.git
+
+
+步骤3：推送到GitHub
+-------------------
+
+git branch -M main
+git push -u origin main
+
+如果遇到认证问题，GitHub会提示你：
+- 创建Personal Access Token
+- 或使用GitHub CLI登录
+
+
+步骤4：等待自动构建
+-------------------
+
+推送成功后：
+
+1. 访问你的GitHub仓库页面
+   https://github.com/YOUR_USERNAME/text-diff-tool
+
+2. 点击顶部的 "Actions" 标签
+
+3. 你会看到：
+   - "Build Text Diff Tool" 工作流正在运行
+   - 黄色圆圈表示正在构建
+   - 绿色圆圈表示构建成功
+   - 红色圆圈表示构建失败
+
+4. 等待3-5分钟
+
+
+步骤5：下载构建产物
+-------------------
+
+构建成功后：
+
+1. 在Actions页面，点击最新的构建记录
+
+2. 滚动到页面底部
+
+3. 找到 "Artifacts" 部分
+
+4. 点击下载：
+   - text-diff-tool-jar（JAR文件包）
+
+5. 解压后包含：
+   - text-diff-tool-1.0.0.jar
+   - TextDiffTool.bat
+   - 说明.txt
+
+
+步骤6：（可选）发布版本
+----------------------
+
+方式A：使用Git标签（自动发布）
+----------------------------
+执行命令：
+
+git tag v1.0.0
+git push origin v1.0.0
+
+这会自动：
+- 触发新的构建
+- 创建GitHub Release
+- 上传产物到Release页面
+
+方式B：手动创建Release
+----------------------
+1. 访问仓库页面
+2. 点击 "Releases" → "Create a new release"
+3. 填写：
+   - Tag: v1.0.0
+   - Release title: Text Diff Tool v1.0.0
+   - Description: 首个正式版本
+4. 勾选：Set as the latest release
+5. 点击：Publish release
+
+
+【验证步骤】
+=====================================
+
+1. 检查仓库
+   访问：https://github.com/YOUR_USERNAME/text-diff-tool
+   确认所有文件都已上传
+
+2. 检查Actions
+   访问：Actions标签
+   确认构建状态为绿色
+
+3. 下载并测试
+   从Actions下载JAR文件
+   解压后运行：
+   java -jar text-diff-tool-1.0.0.jar --gui
+
+
+【完整命令总结】
+=====================================
+
+# （替换YOUR_USERNAME）
+git remote add origin https://github.com/YOUR_USERNAME/text-diff-tool.git
+git branch -M main
+git push -u origin main
+
+# 创建标签并发布（可选）
+git tag v1.0.0
+git push origin v1.0.0
+
+
+【常见问题】
+=====================================
+
+Q: 提示"authentication failed"？
+A:
+- 使用HTTPS需要Personal Access Token
+- 或使用GitHub CLI: gh auth login
+- 或配置SSH密钥
+
+Q: Actions不运行？
+A:
+1. 访问 Settings → Actions → General
+2. 设置 Workflow permissions 为 "Read and write permissions"
+3. 重新推送代码触发
+
+Q: 构建失败？
+A:
+1. 在Actions页面查看日志
+2. 检查错误信息
+3. 修复后重新推送
+
+Q: 如何查看推送的文件？
+A: 访问仓库主页，可以看到所有文件
+
+Q: 如何删除仓库？
+A: Settings → Danger Zone → Delete repository
+
+
+【提示】
+=====================================
+
+- 建议使用公开仓库（Public），这样Actions完全免费
+- 私有仓库也有免费的Actions额度（每月2000分钟）
+- 第一次推送可能需要较长时间，后续会更快
+
+=====================================
+
+现在可以执行步骤1开始创建GitHub仓库了！
